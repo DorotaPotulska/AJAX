@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+    </head>
+
+    <body>
+        <!-- <h1>Hello World</h1> -->
+        <button id="button">Get Text File</button>
+        <div id="text"></div>
+
+        <script>
+            document.getElementById('button').addEventListener('click',loadText);
+
+    //         let person =[{
+    // "name":"Dorota",
+    // "favcolor":"red",
+    // "isProgramer":true,
+    // "languages":["Java","JavaScript","Python"],
+    // "friend":[{"name":"Peter",
+    //     "favcolor":"green",
+    //     "isProgramer":false,
+    //     "languages":["Java","JavaScript","Python"],"friend":[""]}]
+    // }];
+
+    // console.log(person);
+
+            function loadText(){
+                let xhr=new XMLHttpRequest();
+
+                //OPEN - call type, url/file, sync/unsync
+
+                // xhr.open('GET','lorem.txt', true);
+                // xhr.open('GET','lorem2.txt', true);
+                //xhr.open('GET','lorem-65k.txt', true);
+
+                //xhr.open('GET','users.json',true);
+                xhr.open('GET','http://api.openweathermap.org/data/2.5/forecast/hourly?q=London&appid=ABC&units=metric',true);
+                
+
+                //do poniższego powinna byc logika wyboru, if uzytkownik wybierze metric
+                // let baseURL="http://api.openweathermap.org/data/2.5/forecast/hourly";
+                // let location="q=London";
+                // let units="u-metric";
+                // let call = baseURL +"?"+"location"+units;
+
+                let requestData=[{
+                    "q":"Warsaw",
+                    "u":"metric"
+                }]
+
+                // console.log(xhr);
+
+                //SEND 
+
+                xhr.send();
+
+                // xhr.onprogress = function(){
+                //        document.getElementById('text').innerText = "Loading data";
+                //    }
+
+
+                xhr.onload =function(){
+                    if (this.status==200){
+
+                        console.log(JSON.parse(this.response));
+                    //console.log(this.response);
+
+                        //let data = JSON.parse(this.response);
+                        //console.log(data);
+                        //renderHTML(data);
+
+
+                        //document.getElementById('text').innerText=this.responseText;
+                    }
+                // xhr.onload =function(){
+                //     if (this.status==200){
+                //         console.log(this.responseText);
+                //         document.getElementById('text').innerText=this.responseText;
+                //     }
+                    // else if(this.status==404){
+                    //     //wyswietlic strone 404
+                    //     document.getElementById('text').innerText="404 nie zostało odnalezione";
+
+                    // } else if(this.status==403){
+                    //     //brak dostepu
+
+                    // } else{
+                    //     document.getElementById('text').innerText="Ups! Coś poszło nie tak"+this.status;
+                }
+
+                // xhr.onerror = function(){
+                //     console.log('Loading error');
+                // }
+                  
+                
+
+                // request not initialized
+                // server connection established
+                // request received
+                // processing request
+                // request finished and response is ready
+
+            }
+        //   function renderHTML(data){
+
+        //       let htmlString ="<ol>";
+
+        //       for(i=0;i<data.length;i++){
+        //         htmlString += "<li>"+ data[i].first_name + " " + data[i].last_name + " is a " + data[i].gender + ". Last connected from IP: " + data[i].ip_address;
+         
+        //       }
+        //       htmlString +="</ol>";
+        //       document.getElementById('text').innerHTML=htmlString;
+
+        //   }
+        </script>
+    </body>
+</html>
+<!-- http://127.0.0.1:5500/index.html -->
